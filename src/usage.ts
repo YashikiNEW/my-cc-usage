@@ -59,8 +59,17 @@ export function readUsageLastNDays(days = 7): DayUsage[] {
         try {
           const j = JSON.parse(line);
           // 日付の判断：createdAt または timestamp 等（両対応）
-          const ts: string | number | undefined = j.createdAt ?? j.timestamp;
-          const date = ts ? toDateStr(new Date(ts)) : toDateStr(new Date());
+          const ts: string | number | Date | undefined = j.createdAt ?? j.timestamp;
+          let parsedDate: Date;
+          if (ts instanceof Date) {
+            parsedDate = ts;
+          } else if (typeof ts === 'number' || typeof ts === 'string') {
+            const tentative = new Date(ts);
+            parsedDate = Number.isNaN(tentative.getTime()) ? new Date() : tentative;
+          } else {
+            parsedDate = new Date();
+          }
+          const date = toDateStr(parsedDate);
           const rec = byDay.get(date);
           if (!rec) continue;
 
