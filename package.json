@@ -1,0 +1,33 @@
+{
+  "name": "my-cc-usage",
+  "displayName": "My Claude Code Usage Monitor",
+  "description": "Show today's Claude Code cost in the status bar and a 7-day breakdown.",
+  "version": "0.0.1",
+  "publisher": "yourname",
+  "engines": { "vscode": ">=1.74.0" },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:my-cc-usage.refresh",
+    "onCommand:my-cc-usage.showDetails"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "my-cc-usage.refresh", "title": "Claude Code Usage: Refresh Usage Data" },
+      { "command": "my-cc-usage.showDetails", "title": "Claude Code Usage: Show Usage Details" }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "package": "vsce package",
+    "lint": "echo 'add your linter'"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.86.0",
+    "typescript": "^5.5.0",
+    "vsce": "^2.15.0"
+  }
+}
