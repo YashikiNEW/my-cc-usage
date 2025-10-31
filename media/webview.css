@@ -1,0 +1,3 @@
+:root { color-scheme: var(--vscode-color-scheme); }
+body { background: var(--vscode-editor-background); color: var(--vscode-editor-foreground); }
+a { color: var(--vscode-textLink-foreground); }
